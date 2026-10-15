@@ -15,9 +15,64 @@
         <p>Air times for the anime listed on the main page.</p>
     </header>
 
-    <?php include 'nav.php'; ?>
+<!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg custom-navbar mb-4" style="background-color: #fff4e2; border-radius: 12px; border: 1px solid #f3e8eb; box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1); padding: 10px 20px;">
+      <div class="container-fluid px-0">
+        
+        <!-- Mobile Hamburger Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- Kept your cute-table, added Bootstrap's table-hover and table-sm -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav align-items-center" style="gap: 10px;">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html">Watch Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="mailto:m271755@usna.edu">Send me an Email</a>
+            </li>
+            
+            <!-- Watch Now Dropdown (Using Bootstrap) -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Watch Now
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://www.crunchyroll.com">Crunchyroll</a></li>
+                <li><a class="dropdown-item" href="https://www.hulu.com/welcome">Hulu</a></li>
+                <li><a class="dropdown-item" href="https://www.netflix.com">Netflix</a></li>
+              </ul>
+            </li>
+
+            <!-- Account Options Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Account Options
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="registration.html">Registration</a></li>
+                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="requestReport.html">Request Report</a></li>
+                <li><a class="dropdown-item" href="logout.html">Logout</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="grid.html">Grid Gallery</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Bootstrap's table-hover and table-sm -->
     <table class="cute-table table-hover table-sm mb-4">
         <caption>All times subject to change</caption>
         <thead>
