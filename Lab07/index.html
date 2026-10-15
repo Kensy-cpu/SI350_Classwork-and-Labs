@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,7 @@
     <title>Anime Recommendations</title>
     <!-- Bootstrap MUST go above styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles load second to override Bootstrap -->
+    <!-- Custom styles load second -->
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -18,13 +17,36 @@
         <p>This is a short list of anime that I have watched and recommend.</p>
     </header>
     
-    <?php include 'nav.php'; ?>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg mb-4" style="background-color: #fff4e2; border-radius: 12px; border: 1px solid #f3e8eb; box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1);">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html" style="color: rgb(138, 53, 0); font-weight: bold;">AnimeHub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html" style="color: rgb(167, 82, 29); font-weight: bold;">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html" style="color: rgb(167, 82, 29); font-weight: bold;">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="registration.html" style="color: rgb(167, 82, 29); font-weight: bold;">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="grid.html" style="color: rgb(167, 82, 29); font-weight: bold;">Grid Gallery</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     
     <!-- Bootstrap 12-Column Grid Wrapper -->
     <div class="container-fluid px-0">
         <div class="row">
             
-            <!-- Show 1 -->
             <div class="col-md-6">
                 <section class="show-card">
                     <img src="../images/TTIGRAAS.jpg" alt="Poster for That Time I got Reincarnated as a Slime">
@@ -38,7 +60,6 @@
                 </section>
             </div>
 
-            <!-- Show 2 -->
             <div class="col-md-6">
                 <section class="show-card">
                     <img src="../images/FMAB.jpg" alt="Poster for Fullmetal Alchemist: Brotherhood">
@@ -52,7 +73,6 @@
                 </section>
             </div>
 
-            <!-- Show 3 -->
             <div class="col-md-6">
                 <section class="show-card">
                     <img src="../images/KaijuNo8.jpg" alt="Poster for Kaiju No. 8">
@@ -66,7 +86,6 @@
                 </section>
             </div>
 
-            <!-- Show 4 -->
             <div class="col-md-6">
                 <section class="show-card">
                     <img src="../images/SoloLeveling.jpg" alt="Poster for Solo Leveling">
@@ -83,7 +102,6 @@
         </div>
     </div>
 
-    <!-- Satisfies "Button as a hyperlink" requirement -->
     <div class="text-center mt-4 mb-5">
         <a href="schedule.html" class="btn btn-danger" style="background-color: rgb(167, 82, 29); border: none;">View Full Watch Schedule</a>
     </div>
