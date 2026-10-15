@@ -1,10 +1,8 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Anime Update Registration</title>
-    <!-- Bootstrap first -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -15,12 +13,34 @@
         <p>Sign up to receive weekly updates on when your favorite shows are airing!</p>
     </header>
 
-    <?php include 'nav.php'; ?>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg mb-4" style="background-color: #fff4e2; border-radius: 12px; border: 1px solid #f3e8eb; box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1);">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html" style="color: rgb(138, 53, 0); font-weight: bold;">AnimeHub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html" style="color: rgb(167, 82, 29); font-weight: bold;">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html" style="color: rgb(167, 82, 29); font-weight: bold;">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="registration.html" style="color: rgb(167, 82, 29); font-weight: bold;">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="grid.html" style="color: rgb(167, 82, 29); font-weight: bold;">Grid Gallery</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <section class="card-container">
         <form action="submit.php" method="POST">
-
-            <!-- Added Bootstrap form-label and form-control -->
             <div class="form-group mb-3">
                 <label for="name" class="form-label">Name:</label>
                 <input type="text" class="form-control" id="name" name="name">
@@ -71,7 +91,6 @@
 
             <div class="form-group mb-3">
                 <label for="topshow" class="form-label">Top Show You're Watching:</label>
-                <!-- Form-select is Bootstrap's class for dropdowns -->
                 <select class="form-select" id="topshow" name="topshow">
                     <option value="slime">That Time I Got Reincarnated as a Slime</option>
                     <option value="fmab">Fullmetal Alchemist: Brotherhood</option>
@@ -92,7 +111,7 @@
     </section>
 
     <div class="text-center mt-4 mb-5">
-        <a href="index.php" class="btn btn-outline-danger" style="color: rgb(167, 82, 29); border-color: rgb(167, 82, 29);">Back to main page</a>
+        <a href="index.html" class="btn btn-outline-danger" style="color: rgb(167, 82, 29); border-color: rgb(167, 82, 29);">Back to main page</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
