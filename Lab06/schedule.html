@@ -1,0 +1,72 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="USNA SI350 Lab 2 Schedule">
+    <meta name="author" content="Mekenzie Espinola">
+    <title>Watch Schedule</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Watch Schedule</h1>
+        <p>Air times for the anime listed on the main page.</p>
+    </header>
+
+    <table class="cute-table">
+        <caption>All times subject to change</caption>
+        <thead>
+            <tr>
+                <th>Show</th>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+
+        <!-- Notice how Slime gets its own tbody -->
+        <tbody>
+            <tr>
+                <td rowspan="2">Slime</td>
+                <td>n/a</td>
+                <td>9:00 am EST</td>
+                <td>n/a</td>
+                <td>9:00 am EST</td>
+                <td colspan="3">n/a (Weekend/Friday)</td>
+            </tr>
+            <tr>
+                <td>n/a</td>
+                <td>4:00 pm EST</td>
+                <td>n/a</td>
+                <td>4:00 pm EST</td>
+                <td colspan="3">n/a (Weekend/Friday)</td>
+            </tr>
+        </tbody>
+
+        <!-- And FMAB gets its own separate tbody -->
+        <tbody>
+            <tr>
+                <td rowspan="2">FMAB</td>
+                <td colspan="5">n/a (Weekdays)</td>
+                <td>1:00 pm EST</td>
+                <td>2:00 pm EST</td>
+            </tr>
+            <tr>
+                <td colspan="5">n/a (Weekdays)</td>
+                <td>1:30 pm EST</td>
+                <td>2:30 pm EST</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <a href="index.html" class="back-link">Back to main page</a>
+
+</body>
+</html>

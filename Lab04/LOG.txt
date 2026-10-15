@@ -1,0 +1,3 @@
+Name	Email	Password	Frequency	Genres	TopShow	Comments
+Ted	ted@test.com	ABC123abc	weekly	action	fmab	/n hahahahahaha \n try that
+Edward	edward@test.com	DEF456def	daily	action	other	noooooo &&

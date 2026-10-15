@@ -1,0 +1,248 @@
+:root {
+  --bkg: #fff4e2;
+}
+
+body {      
+  background-color: #fff7eb;
+  opacity: 1;
+  background-image: radial-gradient(circle at 25px 100%, transparent 22px, #e8dbc7 22px, #e8dbc7 25px, transparent 25px), 
+                    radial-gradient(circle at 25px 0%, transparent 22px, #e8dbc7 22px, #e8dbc7 25px, transparent 25px);
+  background-size: 50px 25px;
+  background-position: 0 0, 25px 0;
+  font-family: 'Quicksand', sans-serif, system-ui;
+  max-width: 800px;
+  margin: 0 auto; 
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* Base text backgrounds */
+p, h1, h3, h5, a {
+  background-color: var(--bkg);
+}
+
+p { color: rgb(69, 37, 2); }
+h1 { color: rgb(138, 53, 0); }
+h3 { color: rgb(167, 82, 29); }
+h5 { color: rgb(158, 90, 47); margin: 10px 0 2px 0; }
+a { color: rgb(167, 82, 29); font-weight: bold; }
+a:hover { color: rgb(138, 53, 0); }
+
+/* =========================================
+   Header Card (The New Rounded Box)
+========================================= */
+header {
+  background-color: var(--bkg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1);
+  margin-bottom: 30px;
+  padding: 25px 30px;
+  border: 1px solid #f3e8eb;
+  text-align: center;
+}
+
+header h1 {
+  margin-top: 0;
+  border-bottom: 2px solid #e8dbc7; /* The horizontal line */
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+header p { 
+  margin: 0; 
+}
+
+/* =========================================
+   Flexbox Show Cards 
+========================================= */
+.show-card {
+  display: flex;          
+  background-color: var(--bkg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1); 
+  margin-bottom: 25px;
+  padding: 20px;
+  gap: 25px;              
+  align-items: flex-start;
+  border: 1px solid #f3e8eb;
+}
+
+.show-card img {
+  height: 200px;          
+  width: auto;            
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.show-info h3 {
+  margin-top: 0;
+  border-bottom: 2px solid #e8dbc7;
+  padding-bottom: 5px;
+}
+
+.show-info p {
+  margin: 0;
+}
+
+/* =========================================
+   Links Section 
+========================================= */
+.links-container {
+  background-color: var(--bkg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1);
+  margin-top: 40px;
+  border: 1px solid #f3e8eb;
+}
+
+.links-container ul {
+  list-style-type: square;
+  margin-bottom: 25px;
+  color: rgb(69, 37, 2);
+}
+
+/* =========================================
+   Cute Table (Fixed Syntax)
+========================================= */
+.cute-table { 
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #fff9fb; 
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.2); 
+}
+
+.cute-table th {
+  background-color: #ffb6c1; 
+  color: #5d4037;
+  padding: 14px 18px;
+  font-weight: 600;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.cute-table td {
+  padding: 14px 18px;
+  color: #6d597a;
+  border-bottom: 1px solid #f3e8eb;
+  font-size: 0.95rem;
+}
+
+.cute-table tbody tr:last-child td {
+  border-bottom: none; 
+}
+
+
+caption {
+  color: #6d597a;
+  text-align: left;
+  padding-left: 5%;
+  letter-spacing: 1px;
+  font-weight: 100;
+  font-size: xx-small;
+}
+
+/* Table Hover Fix - Highlights the entire tbody block at once */
+.cute-table tbody:hover {
+  background-color: #ffe4e6;
+  transition: background-color 0.2s ease;
+}
+
+/* =========================================
+   Form Page Styling
+========================================= */
+.card-container {
+  background-color: var(--bkg);
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1);
+  margin-top: 20px;
+  border: 1px solid #f3e8eb;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group > label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: rgb(167, 82, 29); /* Matches your h3 color */
+}
+
+/* Input Fields */
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e8dbc7;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: inherit;
+  background-color: #fff;
+  color: rgb(69, 37, 2);
+}
+
+/* Radio & Checkbox Containers */
+.choice-group {
+  background: #fff9fb;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #f3e8eb;
+}
+
+.choice-group label {
+  display: inline;
+  font-weight: normal;
+  color: rgb(69, 37, 2);
+  margin-left: 5px;
+}
+
+.choice-item {
+  margin-bottom: 5px;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-group input {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: opacity 0.2s;
+}
+
+.button-group input:hover {
+  opacity: 0.8;
+}
+
+.button-group input[type="submit"] {
+  background-color: rgb(167, 82, 29);
+  color: #fff;
+  flex: 2; /* Makes the submit button larger */
+}
+
+.button-group input[type="reset"] {
+  background-color: #e8dbc7;
+  color: rgb(69, 37, 2);
+  flex: 1;
+}
+
+/* Centered Back Link */
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+}

@@ -1,0 +1,55 @@
+<html lang="eng">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="description" content="USNA SI350 Lab 2 Registration">
+    <meta name="author" content="Mekenzie Espinola">
+    <title>Anime Update Registration</title>
+  </head>
+  <body>
+
+    <h1>Anime Mailing List Registration</h1>
+    <p>Sign up to receive weekly updates on when your favorite shows are airing!</p>
+
+        <form action="submit.php" method="POST">
+
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name"><br><br>
+
+          <label for="email">E-mail Address (Required):</label><br>
+          <input type="email" id="email" name="email" required><br><br>
+
+          <label for="password">Create Password (for future changes):</label><br>
+          <input type="password" id="password" name="password"><br><br>
+
+          <label>Preferred Update Frequency:</label><br>
+          <input type="radio" id="weekly" name="frequency" value="weekly">
+          <label for="weekly">Weekly Digest</label><br>
+          <input type="radio" id="daily" name="frequency" value="daily">
+          <label for="daily">Daily Alerts</label><br><br>
+
+          <label>Favorite Genres / Formats (Select at least 2):</label><br>
+          <input type="checkbox" id="genre1" name="genres" value="isekai">
+          <label for="genre1">Isekai / Reincarnation</label><br>
+          <input type="checkbox" id="genre2" name="genres" value="action">
+          <label for="genre2">Action / Shonen</label><br>
+          <input type="checkbox" id="genre3" name="genres" value="sliceoflife">
+          <label for="genre3">Slice of Life</label><br><br>
+
+          <label for="topshow">Top Show You're Watching:</label><br>
+          <select id="topshow" name="topshow">
+            <option value="slime">That Time I Got Reincarnated as a Slime</option>
+            <option value="fmab">Fullmetal Alchemist: Brotherhood</option>
+            <option value="other">Other</option>
+          </select><br><br>
+
+          <label for="comments">Additional Comments / Show Requests:</label><br>
+          <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+          <input type="submit" value="Sign Up">
+          <input type="reset" value="Clear Form">
+        </form>
+        <hr>
+        <a href="index.html">Back to main page</a>
+      </body>
+      </html> 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Admin Report Request</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+
+    <header>
+        <h1>Generate Registration Report</h1>
+        <p>Select criteria to filter the registered users.</p>
+    </header>
+
+    <section class="card-container">
+        <!-- Use GET here because we are requesting a report, no new data is getting inputted -->
+        <form action="createReport.php" method="GET">
+            
+            <div class="form-group">
+                <label for="filter_frequency">Filter by Update Frequency:</label>
+                <select id="filter_frequency" name="filter_frequency">
+                    <option value="all">Show All Users</option>
+                    <option value="daily">Daily Alerts Only</option>
+                    <option value="weekly">Weekly Digest Only</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Generate Report">
+            </div>
+            
+        </form>
+    </section>
+
+    <a href="index.html" class="back-link">Back to main page</a>
+
+</body>
+</html>

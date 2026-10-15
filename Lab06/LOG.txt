@@ -1,0 +1,2 @@
+Name	Email	Password	Frequency	Genres	TopShow	Comments
+testing	test@test.com	$2y$10$NDYppWtXjaWnaVuPKbGoGe572RVXjktlnKlwwiT55.pgrHZw0O7Vy	daily	action	other	hi
