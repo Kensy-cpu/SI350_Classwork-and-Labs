@@ -17,31 +17,85 @@
         <p>This is a short list of anime that I have watched and recommend.</p>
     </header>
     
-    <!-- Hardcoded Navbar -->
-    <nav class="navbar navbar-expand-lg mb-4" style="background-color: #fff4e2; border-radius: 12px; border: 1px solid #f3e8eb; box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1);">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html" style="color: rgb(138, 53, 0); font-weight: bold;">AnimeHub</a>
+   <!-- Custom styling to make the Bootstrap Navbar match your old CSS perfectly -->
+    <style>
+        .custom-navbar a.nav-link, .custom-navbar a.dropdown-item {
+            color: rgb(167, 82, 29) !important;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .custom-navbar a.nav-link:hover, .custom-navbar a.dropdown-item:hover {
+            background-color: #ffe4e6 !important; /* Your cute pink hover */
+        }
+        .custom-navbar .dropdown-menu {
+            background-color: #fff9fb;
+            border-radius: 8px;
+            border: 1px solid #f3e8eb;
+            box-shadow: 0 8px 20px rgba(138, 53, 0, 0.15);
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+    </style>
+
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg custom-navbar mb-4" style="background-color: #fff4e2; border-radius: 12px; border: 1px solid #f3e8eb; box-shadow: 0 4px 15px rgba(138, 53, 0, 0.1); padding: 10px 20px;">
+      <div class="container-fluid px-0">
+        
+        <!-- Mobile Hamburger Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav align-items-center" style="gap: 10px;">
+            
             <li class="nav-item">
-              <a class="nav-link" href="index.html" style="color: rgb(167, 82, 29); font-weight: bold;">Home</a>
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="schedule.html" style="color: rgb(167, 82, 29); font-weight: bold;">Schedule</a>
+              <a class="nav-link" href="schedule.html">Watch Schedule</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="registration.html" style="color: rgb(167, 82, 29); font-weight: bold;">Sign Up</a>
+              <a class="nav-link" href="mailto:m271755@usna.edu">Send me an Email</a>
             </li>
+            
+            <!-- Watch Now Dropdown (Using Bootstrap) -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Watch Now
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://www.crunchyroll.com">Crunchyroll</a></li>
+                <li><a class="dropdown-item" href="https://www.hulu.com/welcome">Hulu</a></li>
+                <li><a class="dropdown-item" href="https://www.netflix.com">Netflix</a></li>
+              </ul>
+            </li>
+
+            <!-- Account Options Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Account Options
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="registration.html">Registration</a></li>
+                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="requestReport.html">Request Report</a></li>
+                <li><a class="dropdown-item" href="logout.html">Logout</a></li>
+              </ul>
+            </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="grid.html" style="color: rgb(167, 82, 29); font-weight: bold;">Grid Gallery</a>
+              <a class="nav-link" href="grid.html">Grid Gallery</a>
             </li>
+
           </ul>
         </div>
       </div>
     </nav>
+
     
     <!-- Bootstrap 12-Column Grid Wrapper -->
     <div class="container-fluid px-0">
