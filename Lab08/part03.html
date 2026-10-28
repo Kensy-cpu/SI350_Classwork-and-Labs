@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Part 3 - Debugging with Chrome Console</title>
+</head>
+<body>
+
+    <h2>Debugging Screenshot</h2>
+    <!-- Make sure to save your screenshot as "screenshot.png" in the same folder as this file -->
+    <img src="screenshot.png" alt="Chrome DevTools Breakpoint and Console Output" style="max-width: 100%; border: 2px solid red; margin-bottom: 20px;">
+
+    <script>
+        let input = prompt("How many iterations have already ran?");
+        let iterations = parseInt(input);
+
+        if (isNaN(iterations)) {
+            iterations = 0;
+        }
+
+        let a = 0;
+        let b = 1;
+
+        for (let i = 0; i <= iterations; i++) {
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+
+        document.write('<table border="1">');
+        document.write('<thead>');
+        document.write('<tr>');
+        document.write('<th></th>');
+        document.write('<th>Fibonacci</th>');
+        document.write('<th>2<sup>n</sup></th>');
+        document.write('<th>3<sup>n</sup></th>');
+        document.write('</tr>');
+        document.write('</thead>');
+        document.write('<tbody>');
+
+        for (let n = 0; n < 10; n++) {
+            let pow2 = Math.pow(2, n);
+            let pow3 = Math.pow(3, n);
+
+            console.log(`Row ${n} | Fibonacci: ${a} | 2^n: ${pow2} | 3^n: ${pow3}`);
+
+            document.write('<tr>');
+            document.write('<td>' + n + '</td>');
+            document.write('<td>' + a + '</td>');
+            document.write('<td>' + pow2 + '</td>');
+            document.write('<td>' + pow3 + '</td>');
+            document.write('</tr>');
+
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+
+        document.write('</tbody>');
+        document.write('</table>');
+    </script>
+
+</body>
+</html>
