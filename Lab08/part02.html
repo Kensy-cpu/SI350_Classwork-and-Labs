@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Part 2 - Simple Table with Inputs</title>
+</head>
+<body>
+
+    <script>
+        // Prompt the user
+        let input = prompt("How many iterations have already ran?");
+        let iterations = parseInt(input);
+
+        // Default to 0 
+        if (isNaN(iterations)) {
+            iterations = 0;
+        }
+
+        let a = 0;
+        let b = 1;
+
+        // Fibonacci sequence at inputted start
+        for (let i = 0; i <= iterations; i++) {
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+
+        // Generate table dynamically
+        document.write('<table border="1">');
+        document.write('<thead>');
+        document.write('<tr>');
+        
+        document.write('<th></th>');
+        document.write('<th>Fibonacci</th>');
+        document.write('<th>2<sup>n</sup></th>');
+        document.write('<th>3<sup>n</sup></th>');
+        document.write('</tr>');
+        document.write('</thead>');
+        document.write('<tbody>');
+
+        for (let n = 0; n < 10; n++) {
+            document.write('<tr>');
+            
+            document.write('<td>' + n + '</td>');
+            
+            document.write('<td>' + a + '</td>');
+            
+            document.write('<td>' + Math.pow(2, n) + '</td>');
+            
+            document.write('<td>' + Math.pow(3, n) + '</td>');
+            
+            document.write('</tr>');
+
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+
+        document.write('</tbody>');
+        document.write('</table>');
+    </script>
+
+</body>
+</html>
