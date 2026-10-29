@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator</title>
+    <!-- Importing Chart.js for Part 3 Graphing -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 20px; 
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { 
+            padding: 10px 20px; 
+            background-color: #007BFF; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 16px;
+        }
+        button:hover { background-color: #0056b3; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .error { color: #d9534f; margin-bottom: 15px; font-weight: bold; }
+        canvas { margin-top: 20px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
 
+    <h1>Compound Interest Calculator</h1>
+    
+    <!-- Error display container -->
+    <div id="error-message" class="error"></div>
+
+    <!-- Inputs -->
+    <div class="form-group">
+        <label for="principal">Principal Amount ($):</label>
+        <input type="number" id="principal" min="0" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="rate">Annual Interest Rate (%):</label>
+        <input type="number" id="rate" min="0" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="time">Time (Years):</label>
+        <input type="number" id="time" min="1" step="1" required>
+    </div>
+    <div class="form-group">
+        <label for="frequency">Compounding Frequency (Times per Year):</label>
+        <input type="number" id="frequency" min="1" step="1" required>
+    </div>
+    <div class="form-group">
+        <label for="contribution">Monthly Contribution ($):</label>
+        <input type="number" id="contribution" min="0" step="0.01" value="0" required>
+    </div>
+    
+    <button onclick="calculateInterest()">Calculate</button>
+
+    <!-- Chart container positioned above the table -->
+    <canvas id="growthChart" width="400" height="200" style="display: none;"></canvas>
+
+    <!-- Results Table -->
+    <table id="resultsTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Total Contributions</th>
+                <th>Ending Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        let growthChartInstance = null; // Track chart instance to destroy it on recalculate
+
+        function calculateInterest() {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = ''; // Clear previous errors
+
+            // Retrieve and parse inputs
+            const principal = parseFloat(document.getElementById('principal').value);
+            const ratePct = parseFloat(document.getElementById('rate').value);
+            const time = parseInt(document.getElementById('time').value);
+            let frequency = parseInt(document.getElementById('frequency').value);
+            const monthlyContribution = parseFloat(document.getElementById('contribution').value) || 0;
+
+            // Basic Error Handling
+            if (isNaN(principal) || isNaN(ratePct) || isNaN(time) || isNaN(frequency) ||
+                principal < 0 || ratePct < 0 || time <= 0 || frequency <= 0 || monthlyContribution < 0) {
+                errorDiv.textContent = 'Please enter valid positive numbers for all fields.';
+                return;
+            }
+
+            // Adjust compounding frequency if monthly contributions exist (Part 2 requirement)
+            if (monthlyContribution > 0) {
+                frequency = 12; 
+            }
+
+            const r = ratePct / 100;
+            const yearsArray = [];
+            const contributionsArray = [];
+            const balanceArray = [];
+
+            const tbody = document.querySelector('#resultsTable tbody');
+            tbody.innerHTML = ''; // Clear previous rows
+
+            // Calculate yearly compounding
+            for (let y = 1; y <= time; y++) {
+                yearsArray.push(`Year ${y}`);
+                
+                let endingBalance = 0;
+                let totalContributions = principal + (monthlyContribution * 12 * y);
+                contributionsArray.push(totalContributions);
+
+                if (monthlyContribution === 0) {
+                    // Standard compound interest formula: A = P(1 + r/n)^(nt)
+                    endingBalance = principal * Math.pow((1 + r / frequency), frequency * y);
+                } else {
+                    // Future Value of Principal + Future Value of Series
+                    const compoundPrincipal = principal * Math.pow((1 + r / 12), 12 * y);
+                    const compoundSeries = monthlyContribution * ((Math.pow((1 + r / 12), 12 * y) - 1) / (r / 12));
+                    endingBalance = compoundPrincipal + compoundSeries;
+                }
+                
+                balanceArray.push(endingBalance);
+
+                // Populate table row
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${y}</td>
+                    <td>$${totalContributions.toFixed(2)}</td>
+                    <td>$${endingBalance.toFixed(2)}</td>
+                `;
+                tbody.appendChild(row);
+            }
+
+            // Unhide UI elements
+            document.getElementById('resultsTable').style.display = 'table';
+            document.getElementById('growthChart').style.display = 'block';
+
+            // Generate Chart.js Graph (Part 3)
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            if (growthChartInstance) {
+                growthChartInstance.destroy(); // Prevent overlapping charts on multiple clicks
+            }
+
+            growthChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: yearsArray,
+                    datasets: [
+                        {
+                            label: 'Ending Balance ($)',
+                            data: balanceArray,
+                            borderColor: '#007BFF',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Total Contributions ($)',
+                            data: contributionsArray,
+                            borderColor: '#28A745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: { display: true, text: 'Amount ($)' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Years' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
