@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Selection</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .container { display: flex; gap: 40px; margin-top: 20px; }
+        .table-container { flex: 1; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        tr:hover { background-color: #f5f5f5; cursor: pointer; }
+        input[type="text"] { padding: 8px; width: 300px; font-size: 16px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="searchInput" onkeyup="performSearch()" placeholder="Search courses..." autofocus>
+
+    <div class="container">
+        <div class="table-container">
+            <table id="searchTable">
+                <thead>
+                    <tr>
+                        <th>Course Nbr</th>
+                        <th>Course Title</th>
+                    </tr>
+                </thead>
+                <tbody id="searchResults">
+                    <!-- Search results will populate here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <table id="selectedTable">
+                <thead>
+                    <tr>
+                        <th>Selected Course Nbr</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody id="selectedCourses">
+                    <!-- Selected courses will populate here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let allCourses = [];
+        let selectedCourses = [];
+
+        // Cookie Helper Functions
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Initialize and load data
+        window.onload = function() {
+            // Read cookie and populate selected courses
+            const cookieData = getCookie('courses');
+            if (cookieData) {
+                selectedCourses = cookieData.split(',');
+            }
+
+            // Fetch course data
+            fetch('part0.php')
+                .then(response => response.json())
+                .then(data => {
+                    allCourses = data;
+                    renderSelectedTable();
+                })
+                .catch(err => console.error("Error loading courses:", err));
+            
+            document.getElementById('searchInput').focus();
+        };
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toUpperCase();
+            const resultsBody = document.getElementById('searchResults');
+            resultsBody.innerHTML = ''; // Clear previous results
+
+            if (query.length === 0) return;
+
+            let matchCount = 0;
+
+            for (let i = 0; i < allCourses.length; i++) {
+                const course = allCourses[i];
+                const courseNbr = course['Course Nbr'];
+                const courseTitle = course['Course Title'];
+
+                // Skip if selected
+                if (selectedCourses.includes(courseNbr)) continue;
+
+                // Check for matches in Number/Title
+                if (courseNbr.toUpperCase().includes(query) || courseTitle.toUpperCase().includes(query)) {
+                    let tr = document.createElement('tr');
+                    tr.onclick = function() { addCourse(courseNbr); };
+                    
+                    tr.innerHTML = `
+                        <td>${courseNbr}</td>
+                        <td>${courseTitle}</td>
+                    `;
+                    resultsBody.appendChild(tr);
+
+                    matchCount++;
+                    if (matchCount >= 20) break; // Limit 20
+                }
+            }
+        }
+
+        function addCourse(courseNbr) {
+            if (!selectedCourses.includes(courseNbr)) {
+                selectedCourses.push(courseNbr);
+                updateCookie();
+                performSearch();      // Re-run search to remove row
+                renderSelectedTable(); // Add to the right table
+            }
+            document.getElementById('searchInput').focus(); // Return focus to search
+        }
+
+        function removeCourse(courseNbr) {
+            selectedCourses = selectedCourses.filter(nbr => nbr !== courseNbr);
+            updateCookie();
+            performSearch();      // Re-run so show the current query match
+            renderSelectedTable(); // Remove from the right table
+            document.getElementById('searchInput').focus(); // Return focus to search
+        }
+
+        function renderSelectedTable() {
+            const selectedBody = document.getElementById('selectedCourses');
+            selectedBody.innerHTML = '';
+
+            selectedCourses.forEach(nbr => {
+                // Find course details
+                const course = allCourses.find(c => c['Course Nbr'] === nbr);
+                if (course) {
+                    let tr = document.createElement('tr');
+                    tr.onclick = function() { removeCourse(nbr); };
+                    
+                    tr.innerHTML = `
+                        <td>${course['Course Nbr']}</td>
+                        <td>${course['Course Title']}</td>
+                    `;
+                    selectedBody.appendChild(tr);
+                }
+            });
+        }
+
+        function updateCookie() {
+            // Stores the array for 90 days
+            setCookie('courses', selectedCourses.toString(), 90);
+        }
+    </script>
+</body>
+</html>
